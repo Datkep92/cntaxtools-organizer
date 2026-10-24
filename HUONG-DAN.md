@@ -4,7 +4,7 @@
 2. Chọn **Quét thư mục** hoặc **Nhập XML / ZIP**, rồi chọn **thư mục kho CNTaxTools**.
 3. Bấm **Đọc XML và ZIP**. Chọn các hồ sơ MST bạn quản lý; không cần chọn tất cả nhà cung cấp/khách hàng.
 4. Bấm **Phân loại vào kho**. XML/ZIP nguồn vẫn được giữ nguyên. Hóa đơn đã có được bỏ qua; bản khác nội dung được tách vào thư mục cần kiểm tra.
-5. Muốn có PDF gốc, bật **Tự tải PDF gốc sau khi phân loại**. Mở CNTaxTools và xác nhận yêu cầu kết nối trong cửa sổ ứng dụng.
+5. Muốn có PDF gốc, mở CNTaxTools có cầu nối mới. Bấm **Kết nối và tải PDF** sau khi phân loại: công cụ tự kiểm quyền MST và bắt đầu tải, không hỏi xác nhận từng lượt. Hoặc bật **Tự kết nối và tải PDF gốc sau khi phân loại** để chạy liền sau bước phân loại.
 
 **Lưu ý về phiên bản:** EXE 1.8.3 đã phát hành chưa hỗ trợ kết nối này. Phân loại XML/ZIP dùng được ngay; tải PDF qua HTML cần CNTaxTools có cầu nối mới. Tải lại bộ 1.8.3 cũ không bổ sung cầu nối.
 
@@ -21,3 +21,5 @@ Chỉ tự đề xuất hồ sơ mới nếu MST có cả XML bán ra và XML mu
 - Với **nguồn**: bấm **Chọn thư mục chỉ đọc**, chọn Downloads và xác nhận cho trình duyệt đọc các tệp. XML/ZIP trong thư mục con được lấy; các tệp khác được bỏ qua. Nếu trình duyệt vẫn không cho chọn thư mục, dùng **Nhập XML / ZIP** để chọn nhiều tệp.
 - Với **kho đích cần ghi**: website không thể tự bỏ hạn chế của trình duyệt. Tạo thư mục con, ví dụ `Downloads/KhoHoaDon`, rồi chọn thư mục này; hoặc chọn một kho khác bạn có quyền ghi.
 - Nếu đang mở trong trình duyệt nhúng mà không chọn/ghi được thư mục, mở địa chỉ web bằng Chrome/Edge trên máy tính. Hủy hộp chọn không xóa dữ liệu đã chọn trước đó. Cách chọn nguồn chỉ đọc không cấp quyền ghi; vẫn phải chọn kho đích riêng.
+
+Cổng ứng dụng được nhớ sau lần kết nối thành công; có thể nhập lại trong **Kết nối và cài đặt**. Đang chạy mã nguồn cũ trong Node thì dừng bằng Ctrl+C và chạy lại `node src/server.js` để nạp cầu nối mới. Không cần cấp lại quyền cho từng lượt. Cửa sổ kết nối vẫn phải mở để tải; trình duyệt có thể hỏi quyền thư mục hoặc cho phép mở cửa sổ.

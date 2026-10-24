@@ -14,7 +14,7 @@ Cần Chrome/Edge trên máy tính và quyền đọc/ghi thư mục do bạn ch
 
 ## PDF gốc
 
-Tùy chọn này mặc định tắt. Cần CNTaxTools đang chạy **bản hỗ trợ cầu nối mới**, xác nhận trong ứng dụng và quyền của từng MST. **Bản EXE 1.8.3 đã phát hành chưa hỗ trợ.** Phân loại XML/ZIP vẫn dùng độc lập. Không yêu cầu cài lại 1.8.3 để bật PDF. Dự án công khai này không chứa bộ tải nhà cung cấp hoặc mã bản quyền của CNTaxTools.
+Tùy chọn này mặc định tắt. Cần CNTaxTools đang chạy **bản hỗ trợ cầu nối mới**, tự kiểm quyền của từng MST rồi tải, không hỏi xác nhận mỗi lượt. **Bản EXE 1.8.3 đã phát hành chưa hỗ trợ.** Phân loại XML/ZIP vẫn dùng độc lập. Không yêu cầu cài lại 1.8.3 để bật PDF. Dự án công khai này không chứa bộ tải nhà cung cấp hoặc mã bản quyền của CNTaxTools.
 
 ## Phát triển / triển khai
 
