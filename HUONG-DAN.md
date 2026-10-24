@@ -11,3 +11,7 @@
 Mã tra cứu thiếu: chọn **Bổ sung / thử lại**. Cổng cần thao tác: dừng lượt PDF, **Mở cổng xác minh**, thực hiện trên trang nhà cung cấp rồi **Nhận PDF sau xác minh**. Một số hóa đơn/nhà cung cấp vẫn cần xử lý thủ công.
 
 Chọn **Dừng** để ngưng hoặc **Tải báo cáo CSV** để xem lại kết quả. Không chạy hai cửa sổ phân loại vào cùng một kho. Sau khi thêm hồ sơ mới, chọn/thêm đúng MST và kho trong CNTaxTools để ứng dụng đọc các XML đã sắp xếp.
+
+Mỗi MST chỉ hiển thị một hồ sơ, gom cả vai trò người bán/người mua và không tách theo tên đơn vị. Ngay dưới MST có số hóa đơn bán ra/mua vào (không đếm lặp XML cùng định danh) và thư mục chung. Ví dụ MST `001234567890` là người bán ở hóa đơn A, người mua ở hóa đơn B: cả hai vào `MST-001234567890`, lần lượt trong `Ban_ra/xml` và `Mua_vao/xml`. Nếu hai bên cùng thuộc một hồ sơ trong cùng hóa đơn, công cụ yêu cầu kiểm tra thay vì tự chọn chiều.
+
+Chỉ tự đề xuất hồ sơ mới nếu MST có cả XML bán ra và XML mua vào trong nguồn. MST chỉ xuất hiện một chiều (nhà cung cấp/khách hàng) không tự được đề xuất. Hồ sơ MST đã có trong kho vẫn được giữ để nhập bổ sung một chiều. Không dùng một XML có hai bên cùng MST để chứng minh đủ hai chiều.
