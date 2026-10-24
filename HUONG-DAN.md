@@ -23,3 +23,5 @@ Chỉ tự đề xuất hồ sơ mới nếu MST có cả XML bán ra và XML mu
 - Nếu đang mở trong trình duyệt nhúng mà không chọn/ghi được thư mục, mở địa chỉ web bằng Chrome/Edge trên máy tính. Hủy hộp chọn không xóa dữ liệu đã chọn trước đó. Cách chọn nguồn chỉ đọc không cấp quyền ghi; vẫn phải chọn kho đích riêng.
 
 Cổng ứng dụng được nhớ sau lần kết nối thành công; có thể nhập lại trong **Kết nối và cài đặt**. Đang chạy mã nguồn cũ trong Node thì dừng bằng Ctrl+C và chạy lại `node src/server.js` để nạp cầu nối mới. Không cần cấp lại quyền cho từng lượt. Cửa sổ kết nối vẫn phải mở để tải; trình duyệt có thể hỏi quyền thư mục hoặc cho phép mở cửa sổ.
+
+Nếu kiểm quyền MST mất vài giây, công cụ sẽ chờ hoàn tất ghép nối rồi mới kiểm tra nhịp kết nối; không tự ngắt vì bước này chưa xong. Khi mất kết nối thật, giao diện hiển thị thêm nguyên nhân. Sau khi có bản sửa, tải lại trang để nạp mã mới.
