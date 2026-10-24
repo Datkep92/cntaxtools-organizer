@@ -33,3 +33,5 @@ Kiểm trình duyệt cần Chrome/Edge; đặt `CHROME_BIN` nếu không ở đ
 Push nhánh `main` sẽ build, kiểm và triển khai GitHub Pages. `dist/` chứa trang web, HTML ngoại tuyến, hướng dẫn và SHA-256. Xem [hướng dẫn](HUONG-DAN.md), [kiến trúc](ARCHITECTURE.md), [thư viện bên thứ ba](THIRD_PARTY_NOTICES.md).
 
 Mã được công khai để tham khảo; repository chưa cấp thêm giấy phép sử dụng/phân phối mã riêng. Giấy phép thư viện bên thứ ba được giữ riêng.
+
+**Quyền của trình duyệt:** Nếu Chrome/Edge chưa cho trang kết nối vào thiết bị, bấm **Kết nối lại** rồi chọn **Cho phép** khi trình duyệt hỏi. Sau khi đã lưu quyền, trang tự kết nối ở lần mở sau. Nếu đã chọn chặn, bật mạng cục bộ / loopback trong Cài đặt trang rồi thử lại. Đây là quyền của trình duyệt, không phải xác nhận từng lượt trong ứng dụng. Xem [tài liệu Chrome](https://developer.chrome.com/blog/local-network-access).

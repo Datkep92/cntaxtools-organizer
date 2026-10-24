@@ -28,3 +28,5 @@ Mở bằng Chrome/Edge trên máy tính. Trang tự kiểm tra bộ tải trên
 - Không chạy hai cửa sổ ghi vào cùng một thư mục. HTML không tạo tài khoản MST hoặc sửa cơ sở dữ liệu của ứng dụng bộ tải.
 - PDF cần bộ tải có cầu nối mới. EXE 1.8.3 cũ chưa có cầu nối; cài lại bộ cũ không bổ sung chức năng. Chạy mã nguồn mới phải khởi động lại máy chủ để có bước tự kiểm tra kết nối mới.
 - Thiếu mã tra cứu/nguồn chưa hỗ trợ không được thay bằng PDF tự dựng.
+
+**Quyền của trình duyệt:** Nếu Chrome/Edge chưa cho trang kết nối vào thiết bị, bấm **Kết nối lại** rồi chọn **Cho phép** khi trình duyệt hỏi. Sau khi đã lưu quyền, trang tự kết nối ở lần mở sau. Nếu đã chọn chặn, bật mạng cục bộ / loopback trong Cài đặt trang rồi thử lại. Đây là quyền của trình duyệt, không phải xác nhận từng lượt trong ứng dụng. Xem [tài liệu Chrome](https://developer.chrome.com/blog/local-network-access).
