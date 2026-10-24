@@ -1,27 +1,30 @@
-# Sắp xếp hóa đơn XML / ZIP
+# Sắp xếp & tải hóa đơn
 
-1. Mở `CNTaxTools-PhanLoai.html` bằng Chrome hoặc Edge trên máy tính.
-2. Chọn **Quét thư mục** hoặc **Nhập XML / ZIP**, rồi chọn **thư mục kho CNTaxTools**.
-3. Bấm **Đọc XML và ZIP**. Chọn các hồ sơ MST bạn quản lý; không cần chọn tất cả nhà cung cấp/khách hàng.
-4. Bấm **Phân loại vào kho**. XML/ZIP nguồn vẫn được giữ nguyên. Hóa đơn đã có được bỏ qua; bản khác nội dung được tách vào thư mục cần kiểm tra.
-5. Muốn có PDF gốc, mở CNTaxTools có cầu nối mới. Bấm **Kết nối và tải PDF** sau khi phân loại: công cụ tự kiểm quyền MST và bắt đầu tải, không hỏi xác nhận từng lượt. Hoặc bật **Tự kết nối và tải PDF gốc sau khi phân loại** để chạy liền sau bước phân loại.
+Mở bằng Chrome/Edge trên máy tính. Trang tự kiểm tra bộ tải trên máy; không kết nối được thì có thể nhập lại cổng hoặc bấm **Bỏ qua**. Chỉ sắp xếp XML/ZIP thì không cần bộ tải. Cổng thành công được nhớ cho lần sau, không quét các cổng khác.
 
-**Lưu ý về phiên bản:** EXE 1.8.3 đã phát hành chưa hỗ trợ kết nối này. Phân loại XML/ZIP dùng được ngay; tải PDF qua HTML cần CNTaxTools có cầu nối mới. Tải lại bộ 1.8.3 cũ không bổ sung cầu nối.
+## Sắp xếp XML / ZIP
 
-Mã tra cứu thiếu: chọn **Bổ sung / thử lại**. Cổng cần thao tác: dừng lượt PDF, **Mở cổng xác minh**, thực hiện trên trang nhà cung cấp rồi **Nhận PDF sau xác minh**. Một số hóa đơn/nhà cung cấp vẫn cần xử lý thủ công.
+1. **Thư mục cần sắp xếp → Chọn thư mục.** Gồm XML và ZIP trong các thư mục con.
+2. **Thư mục lưu dữ liệu → Chọn thư mục.** Công cụ tự đọc dữ liệu khi đã có đủ nguồn và nơi lưu.
+3. MST có cả mua vào và bán ra được chọn sẵn. Mở danh sách MST một chiều để chọn thêm nếu nguồn còn thiếu dữ liệu. Không chọn tất cả nhà cung cấp/khách hàng nếu bạn không quản lý các MST đó.
+4. Bấm **Phân loại**. Kiểm tra nguồn, nơi lưu và số MST. Chọn **Tải luôn hóa đơn PDF gốc** nếu cần; bấm **Đồng ý, sắp xếp** để bắt đầu. Bấm **Để sau** chưa ghi tệp nào.
+5. Theo dõi danh sách. Tệp nguồn giữ nguyên, XML trùng được bỏ qua, bản khác nội dung được tách để kiểm tra. XML nằm ở `MST-…/Mua_vao/xml` hoặc `MST-…/Ban_ra/xml`; PDF tải kèm nằm ở `pdf-goc` trong nhánh tương ứng.
 
-Chọn **Dừng** để ngưng hoặc **Tải báo cáo CSV** để xem lại kết quả. Không chạy hai cửa sổ phân loại vào cùng một kho. Sau khi thêm hồ sơ mới, chọn/thêm đúng MST và kho trong CNTaxTools để ứng dụng đọc các XML đã sắp xếp.
+## Tải PDF gốc riêng
 
-Mỗi MST chỉ hiển thị một hồ sơ, gom cả vai trò người bán/người mua và không tách theo tên đơn vị. Ngay dưới MST có số hóa đơn bán ra/mua vào (không đếm lặp XML cùng định danh) và thư mục chung. Ví dụ MST `001234567890` là người bán ở hóa đơn A, người mua ở hóa đơn B: cả hai vào `MST-001234567890`, lần lượt trong `Ban_ra/xml` và `Mua_vao/xml`. Nếu hai bên cùng thuộc một hồ sơ trong cùng hóa đơn, công cụ yêu cầu kiểm tra thay vì tự chọn chiều.
+1. Chuyển sang **Tải PDF gốc**.
+2. Chọn thư mục XML hoặc **Nhập nhiều XML**; chọn thư mục để lưu PDF.
+3. Kiểm tra MST đã chọn (MST một chiều có thể chọn thêm). Bấm **Tải PDF gốc**, xác nhận để chạy.
+4. PDF lưu trực tiếp vào thư mục PDF đã chọn. Không sao chép/phân loại lại XML. PDF hợp lệ đã có được bỏ qua.
+5. Bấm **Xem PDF** trên dòng đã lưu để mở bản gốc, hoặc tải riêng tệp đó. Các dòng thiếu mã/cần xác minh có nút bổ sung hoặc mở cổng nhà cung cấp. Có thể lọc **Cần kiểm tra**, tải báo cáo và thử lại.
 
-Chỉ tự đề xuất hồ sơ mới nếu MST có cả XML bán ra và XML mua vào trong nguồn. MST chỉ xuất hiện một chiều (nhà cung cấp/khách hàng) không tự được đề xuất. Hồ sơ MST đã có trong kho vẫn được giữ để nhập bổ sung một chiều. Không dùng một XML có hai bên cùng MST để chứng minh đủ hai chiều.
+**Dừng** sẽ ngưng lượt, giữ tệp đã lưu. Giữ cửa sổ bộ tải mở trong khi tải PDF; đóng trang/cửa sổ kết nối thì lượt dừng. Trình duyệt có thể hỏi quyền đọc/ghi thư mục, mạng cục bộ hoặc cửa sổ bật lên; công cụ không tự bỏ các giới hạn này.
 
-## Chọn Downloads hoặc thư mục bị trình duyệt hạn chế
+## Lưu ý
 
-- Với **nguồn**: bấm **Chọn thư mục chỉ đọc**, chọn Downloads và xác nhận cho trình duyệt đọc các tệp. XML/ZIP trong thư mục con được lấy; các tệp khác được bỏ qua. Nếu trình duyệt vẫn không cho chọn thư mục, dùng **Nhập XML / ZIP** để chọn nhiều tệp.
-- Với **kho đích cần ghi**: website không thể tự bỏ hạn chế của trình duyệt. Tạo thư mục con, ví dụ `Downloads/KhoHoaDon`, rồi chọn thư mục này; hoặc chọn một kho khác bạn có quyền ghi.
-- Nếu đang mở trong trình duyệt nhúng mà không chọn/ghi được thư mục, mở địa chỉ web bằng Chrome/Edge trên máy tính. Hủy hộp chọn không xóa dữ liệu đã chọn trước đó. Cách chọn nguồn chỉ đọc không cấp quyền ghi; vẫn phải chọn kho đích riêng.
-
-Cổng ứng dụng được nhớ sau lần kết nối thành công; có thể nhập lại trong **Kết nối và cài đặt**. Đang chạy mã nguồn cũ trong Node thì dừng bằng Ctrl+C và chạy lại `node src/server.js` để nạp cầu nối mới. Không cần cấp lại quyền cho từng lượt. Cửa sổ kết nối vẫn phải mở để tải; trình duyệt có thể hỏi quyền thư mục hoặc cho phép mở cửa sổ.
-
-Nếu kiểm quyền MST mất vài giây, công cụ sẽ chờ hoàn tất ghép nối rồi mới kiểm tra nhịp kết nối; không tự ngắt vì bước này chưa xong. Khi mất kết nối thật, giao diện hiển thị thêm nguyên nhân. Sau khi có bản sửa, tải lại trang để nạp mã mới.
+- Nếu Downloads không cho ghi, tạo và chọn thư mục con, ví dụ `Downloads/KhoHoaDon`. Nguồn dùng cách chọn thư mục chỉ đọc; cũng có thể nhập XML trực tiếp trong phần PDF.
+- Trình duyệt chỉ cho biết tên thư mục đã chọn, không cung cấp đầy đủ đường dẫn Windows. Hộp xác nhận hiển thị tên nguồn/nơi lưu và cấu trúc dự kiến, không đoán đường dẫn tuyệt đối.
+- Giữ số 0 đầu của MST/CCCD. Chỉ thêm mã bổ sung khi chắc chắn cùng hồ sơ. Hai bên cùng thuộc một hồ sơ trong một hóa đơn được tách để kiểm tra.
+- Không chạy hai cửa sổ ghi vào cùng một thư mục. HTML không tạo tài khoản MST hoặc sửa cơ sở dữ liệu của ứng dụng bộ tải.
+- PDF cần bộ tải có cầu nối mới. EXE 1.8.3 cũ chưa có cầu nối; cài lại bộ cũ không bổ sung chức năng. Chạy mã nguồn mới phải khởi động lại máy chủ để có bước tự kiểm tra kết nối mới.
+- Thiếu mã tra cứu/nguồn chưa hỗ trợ không được thay bằng PDF tự dựng.

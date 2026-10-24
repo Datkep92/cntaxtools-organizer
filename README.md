@@ -1,22 +1,23 @@
-# CNTaxTools — Sắp xếp hóa đơn
+# Sắp xếp & tải hóa đơn
 
-**Dùng trên web:** https://datkep92.github.io/cntaxtools-organizer/
+**[Mở công cụ trên web](https://datkep92.github.io/cntaxtools-organizer/)** · **[Tải HTML ngoại tuyến](https://datkep92.github.io/cntaxtools-organizer/CNTaxTools-PhanLoai.html)**
 
-**Bản ngoại tuyến:** [Tải HTML](https://datkep92.github.io/cntaxtools-organizer/CNTaxTools-PhanLoai.html) (bấm chuột phải → Lưu liên kết thành…), sau đó mở bằng Chrome hoặc Edge trên máy tính.
+Hai chức năng độc lập, dùng Chrome/Edge trên máy tính:
 
-Quét cả thư mục con hoặc nhập nhiều XML/ZIP, chọn kho, chọn hồ sơ MST quản lý rồi phân loại. Giữ nguyên tệp nguồn và nội dung XML; chống trùng, tách bản xung đột để kiểm tra, không ghi đè. Chấp nhận CCCD 12 số, giữ số 0 đầu. Chỉ gộp các mã vào cùng hồ sơ khi người dùng xác nhận.
+- **Sắp xếp XML / ZIP:** chọn thư mục nguồn và thư mục lưu, tự đọc dữ liệu; MST có cả mua vào/bán ra được chọn sẵn, MST một chiều có thể chọn thêm. Xác nhận nguồn → đích trước khi ghi, có thể chọn tải luôn PDF gốc.
+- **Tải PDF gốc:** chọn thư mục XML hoặc nhập nhiều XML, chọn thư mục lưu PDF, chọn MST cần xử lý rồi xác nhận tải. Có tiến trình từng hóa đơn, lỗi cụ thể, bộ lọc và nút xem trước PDF đã lưu.
 
-Đích tương thích CNTaxTools: `MST-…/Mua_vao/xml` và `MST-…/Ban_ra/xml`. Không tự thêm tài khoản hoặc sửa dữ liệu trong ứng dụng.
+Nguồn được giữ nguyên; chống trùng, tách xung đột, không ghi đè bản khác nội dung. Mỗi MST dùng một thư mục `MST-…`, bên trong có `Mua_vao/xml` và `Ban_ra/xml`. PDF tải kèm nằm trong `pdf-goc` của từng nhánh; PDF tải riêng nằm trực tiếp trong thư mục PDF bạn chọn.
 
-## Quyền và dữ liệu
+## Kết nối bộ tải
 
-Cần Chrome/Edge trên máy tính và quyền đọc/ghi thư mục do bạn chọn. XML/ZIP được xử lý trên máy trong trình duyệt, không tải lên GitHub. Trang không dùng CDN, quảng cáo hoặc công cụ theo dõi. Khi dùng web, GitHub vẫn phục vụ trang và có thể ghi nhật ký truy cập theo chính sách của GitHub.
+Trang tự kiểm tra bộ tải trên thiết bị một lần khi mở, dùng cổng đã nhớ hoặc mặc định 28122. Không quét các cổng khác. Khi không kết nối được, ô nhập cổng xuất hiện; có thể bỏ qua và chỉ sắp xếp XML. Bộ tải và trình duyệt có thể yêu cầu quyền mạng cục bộ hoặc mở cửa sổ.
 
-## PDF gốc
+Phần sắp xếp chạy độc lập. PDF cần ứng dụng trên máy có **cầu nối phiên bản mới**, không yêu cầu thêm hồ sơ MST vào ứng dụng; quyền sử dụng vẫn được kiểm tra. EXE 1.8.3 đã phát hành chưa có cầu nối. Dự án này không công khai bộ tải nhà cung cấp, mã bản quyền hoặc dữ liệu người dùng.
 
-Tùy chọn này mặc định tắt. Cần CNTaxTools đang chạy **bản hỗ trợ cầu nối mới**, tự kiểm quyền của từng MST rồi tải, không hỏi xác nhận mỗi lượt. **Bản EXE 1.8.3 đã phát hành chưa hỗ trợ.** Phân loại XML/ZIP vẫn dùng độc lập. Không yêu cầu cài lại 1.8.3 để bật PDF. Dự án công khai này không chứa bộ tải nhà cung cấp hoặc mã bản quyền của CNTaxTools.
+XML/ZIP không được tải lên GitHub. Thư viện được nhúng, không dùng CDN/quảng cáo/theo dõi; khi dùng web GitHub vẫn phục vụ trang và có thể ghi nhật ký truy cập theo chính sách GitHub. Kết nối mạng của trang chỉ dành cho địa chỉ loopback trên máy. PDF truyền qua cửa sổ relay có phạm vi từng lượt.
 
-## Phát triển / triển khai
+## Phát triển
 
 Node.js 20 trở lên:
 
@@ -24,10 +25,11 @@ Node.js 20 trở lên:
 npm ci --ignore-scripts
 npm run build
 npm test
+npm run test:browser
 ```
 
-Đầu ra `dist/`: trang `index.html`, bản HTML ngoại tuyến, hướng dẫn và mã kiểm SHA-256. CSS/JS/JSZip được nhúng để bản tải về hoạt động ngoại tuyến. Push nhánh `main` sẽ kiểm thử và cập nhật GitHub Pages qua workflow. Bật Pages với nguồn **GitHub Actions** trong cài đặt repository.
+Kiểm trình duyệt cần Chrome/Edge; đặt `CHROME_BIN` nếu không ở đường dẫn thông thường. `test:browser` dùng thư mục sandbox và bộ tải giả lập/PDF mẫu, không truy cập dữ liệu người dùng hoặc cổng nhà cung cấp. Kiểm cầu nối native được thực hiện riêng trong dự án ứng dụng.
 
-Xem [hướng dẫn sử dụng](HUONG-DAN.md), [cấu trúc và giới hạn](ARCHITECTURE.md), [thư viện bên thứ ba](THIRD_PARTY_NOTICES.md).
+Push nhánh `main` sẽ build, kiểm và triển khai GitHub Pages. `dist/` chứa trang web, HTML ngoại tuyến, hướng dẫn và SHA-256. Xem [hướng dẫn](HUONG-DAN.md), [kiến trúc](ARCHITECTURE.md), [thư viện bên thứ ba](THIRD_PARTY_NOTICES.md).
 
-Mã được công khai để tham khảo; repository chưa cấp thêm giấy phép sử dụng/phân phối mã riêng. Giấy phép của thư viện bên thứ ba được giữ riêng.
+Mã được công khai để tham khảo; repository chưa cấp thêm giấy phép sử dụng/phân phối mã riêng. Giấy phép thư viện bên thứ ba được giữ riêng.

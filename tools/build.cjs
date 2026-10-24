@@ -2,7 +2,7 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),dir=path.join(root,'src'),out=path.join(root,'dist');
 let html=fs.readFileSync(path.join(dir,'page.html'),'utf8');
-for(const [slot,file] of [['STYLE',path.join(dir,'style.css')],['ZIP',require.resolve('jszip/dist/jszip.min.js')],['CORE',path.join(dir,'core.js')],['APP',path.join(dir,'app.js')]]) {
+for(const [slot,file] of [['STYLE',path.join(dir,'style.css')],['ZIP',require.resolve('jszip/dist/jszip.min.js')],['CORE',path.join(dir,'core.js')],['BRIDGE',path.join(dir,'bridge.js')],['APP',path.join(dir,'app.js')]]) {
  const text=fs.readFileSync(file,'utf8').replace(/<\/script/gi,'<\\/script');
  html=html.replace('/*'+slot+'*/',()=>text);
 }

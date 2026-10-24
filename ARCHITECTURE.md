@@ -1,15 +1,17 @@
 # Cấu trúc và giới hạn
 
-- `src/core.js`: đọc XML/ZIP, định danh, so nội dung, kiểm và ghi tệp.
-- `src/app.js`: chọn nguồn/kho/hồ sơ, phân loại, kết nối cầu nối PDF.
-- `src/page.html`, `src/style.css`: giao diện tiếng Việt.
-- `tools/build.cjs`: nhúng thư viện và mã vào một HTML; dùng cùng mã cho web và ngoại tuyến.
-- Cầu nối máy cục bộ và adapter PDF thuộc CNTaxTools, không nằm trong repository này.
+- `src/core.js`: XML/ZIP, định danh, băm nội dung, chống trùng/xung đột, ghi tệp và đọc lại xác minh.
+- `src/bridge.js`: kiểm cổng, popup/MessageChannel, xác minh nonce/cửa sổ/origin, request và heartbeat sau ghép nối.
+- `src/app.js`: hai workspace độc lập; tự đọc nguồn sau chọn đích; MST hai chiều mặc định, MST một chiều tùy chọn; xác nhận trước ghi; sắp xếp/tải PDF, tiến trình/lỗi/báo cáo, xem trước.
+- `src/page.html`, `src/style.css`: giao diện tiếng Việt, tên gọi chung, bố cục thích ứng.
+- `tools/build.cjs`: cùng nguồn cho web và HTML ngoại tuyến, nhúng JSZip/CSS/JS. Không tải CDN.
 
-Nguồn được chốt trước khi ghi. Mã người bán/người mua quyết định chiều mua/bán, không dựa tên tệp. SHA-256 so nội dung XML; cùng định danh nhưng khác nội dung được tách ngoài vùng ứng dụng nhập tự động. Chỉ chọn các hồ sơ thực sự quản lý.
+Sắp xếp giữ nguyên byte XML và nguồn, chỉ sao chép sau khi xác nhận. Phân chiều dựa MST trong XML; không dựa tên tệp hoặc tên đơn vị. Kho đích được đối chiếu trước khi ghi; bản khác nội dung được tách ngoài vùng tự nhập. Nguồn được chốt trước ghi để tránh quét lại đầu ra. Giới hạn: 16 MB/XML, 128 MB/ZIP, 3 lớp ZIP, 20.000 mục ZIP, 512 MB XML và giải nén mỗi lượt.
 
-Giới hạn: XML 16 MB/tệp, ZIP 128 MB/tệp, tối đa 3 lớp ZIP, 20.000 mục ZIP, tối đa 512 MB XML và dung lượng giải nén mỗi lượt. ZIP mã hóa, ZIP64/nhiều phần được báo riêng. Không chạy hai cửa sổ phân loại vào cùng kho. Thư mục nguồn được chốt trước ghi; đầu ra có sẵn được đối chiếu để chống trùng.
+PDF riêng không ghi XML. Khi nhiều MST đã chọn cùng liên quan một hóa đơn, PDF riêng chỉ tải một bản cho cùng định danh/nội dung. XML cùng định danh khác nội dung không được tải. PDF chỉ đánh dấu đã lưu sau khi ghi/đọc lại xác minh; ACK đến bộ tải sau đó. Xem trước đọc tệp đã xác minh, dùng blob application/pdf trong trình duyệt, thu hồi URL sau đóng. Không giữ một blob cho mỗi PDF trong bộ nhớ.
 
-Cầu nối chỉ trao đổi qua cửa sổ cục bộ và MessageChannel; kiểm cửa sổ, mã lượt ngẫu nhiên và nguồn gửi. Không giữ cookie/khóa phiên chính trong trang web. Khi người dùng chủ động kết nối, trang relay cục bộ nhận mã dùng một lần, hết hạn sau 2 phút. Relay chỉ tiếp nhận đúng cửa sổ, mã ngẫu nhiên và origin công cụ; máy chủ tự kiểm quyền MST/mã bổ sung rồi cấp quyền cho manifest/hash của lượt này. Không hỏi duyệt từng lượt. Biết cổng mà không qua relay hợp lệ không tự được cấp quyền. Đây không phải biện pháp ngăn một chương trình đã chạy dưới tài khoản Windows của người dùng. Không bật CORS chung hoặc quyền API tùy ý cho website.
+Kiểm kết nối ban đầu chỉ GET `/api/companion/capabilities` trên cổng đã nhớ hoặc mặc định, không mở session/đọc dữ liệu/MST/khóa và không quét cổng. Chỉ endpoint này có CORS cho origin công cụ và file ngoại tuyến; không mở CORS cho API tải hoặc API ứng dụng. Quyền mạng cục bộ của trình duyệt vẫn áp dụng.
 
-Kiểm tự động repository công khai xác nhận build tự chứa và vài bất biến xử lý. Kiểm tích hợp trong dự án CNTaxTools riêng kiểm XML/ZIP, sandbox thư mục trình duyệt, trùng/xung đột, relay/duyệt quyền và PDF mẫu. Không coi PDF mẫu là đã thử mọi cổng nhà cung cấp hoặc EXE phát hành.
+Khi người dùng xác nhận tải, cửa sổ relay giữ mã phiên riêng của lượt, kiểm đúng opener/nonce/origin; máy chủ kiểm ticket dùng một lần, quyền MST/mã bổ sung, manifest/hash và XML. HTML không có cookie/khóa phiên chính. Cầu nối, adapter và bản quyền nằm trong ứng dụng riêng, không có trong repo công khai. Không coi đường dẫn GitHub Pages là ranh giới origin: các project của cùng tài khoản chia sẻ origin. Đây không phải biện pháp ngăn chương trình đã chạy dưới cùng tài khoản Windows.
+
+Kiểm công khai gồm unit/build và Chrome với tệp/thư mục sandbox, bộ tải/PDF mẫu, đường lỗi thiếu mã, kết nối chậm, chống trùng/xung đột, hủy xác nhận, PDF riêng/xem trước và màn hình rộng/hẹp. Kiểm bridge native bổ sung chạy trong dự án ứng dụng. Không coi các kiểm fixture là chứng minh mọi cổng nhà cung cấp hoặc EXE đã phát hành hoạt động.

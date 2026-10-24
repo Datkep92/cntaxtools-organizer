@@ -1,1 +1,20 @@
-{"name":"cntaxtools-organizer","version":"1.0.0","private":true,"description":"Phân loại hóa đơn XML/ZIP trên máy, tương thích kho CNTaxTools","scripts":{"build":"node tools/build.cjs","test":"node --test tests/*.test.cjs"},"dependencies":{"jszip":"3.10.1"},"engines":{"node":">=20"}}
+{
+  "name": "cntaxtools-organizer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sắp xếp hóa đơn XML/ZIP và tải PDF gốc trên thiết bị",
+  "scripts": {
+    "build": "node tools/build.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "test:browser": "node tests/browser.cjs"
+  },
+  "dependencies": {
+    "jszip": "3.10.1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "chrome-remote-interface": "0.33.3"
+  }
+}
