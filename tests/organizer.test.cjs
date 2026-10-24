@@ -47,3 +47,9 @@ test('new profiles require separate purchase and sales XML; one-sided counterpar
  assert.equal(C.profilesFrom([rows[0]],{requireBoth:true}).length,0);
  assert.equal(C.profilesFrom([{seller:'001234567890',buyer:'001234567890',key:'self'}],{requireBoth:true}).length,0);
 });
+
+test('read-only directory input keeps nested paths and bytes, excludes unrelated and quarantine files',async()=>{
+ const original={name:'a.xml',webkitRelativePath:'Downloads/nested/a.xml',bytes:'unchanged'};
+ const files=[original,{name:'batch.zip',webkitRelativePath:'Downloads/batch.zip'},{name:'other.pdf',webkitRelativePath:'Downloads/other.pdf'},{name:'review.xml',webkitRelativePath:'Downloads/_Phan_loai_can_kiem_tra/run/review.xml'}];
+ const sources=C.sourcesFromFiles(files);assert.equal(sources.length,2);assert.equal(sources[0].name,'Downloads/nested/a.xml');assert.equal(await sources[0].file(),original);assert.equal(C.sourcesFromFiles([]).length,0);
+});

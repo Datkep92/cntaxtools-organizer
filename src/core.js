@@ -18,6 +18,7 @@
   if([row.seller,row.model,row.series,row.number].some(x=>!x||x.includes('|')||x.length>100))throw Error('Thiếu hoặc sai MST người bán, mẫu số, ký hiệu hoặc số hóa đơn.');
   row.key=key(row);return row;
  }
+ function sourcesFromFiles(files){return [...files].filter(f=>/\.(xml|zip)$/i.test(f.name)&&!(f.webkitRelativePath||'').split('/').includes('_Phan_loai_can_kiem_tra')).map(f=>({name:f.webkitRelativePath||f.name,file:async()=>f}));}
  async function snapshot(dir,prefix='',out=[],depth=0,stopped=()=>false,skipReview=false){
   if(depth>64)throw Error('Thư mục lồng quá 64 cấp: '+prefix);
   for await(const [name,entry]of dir.entries()){if(stopped())throw Error('Đã dừng tìm tệp.');if(entry.kind==='directory'){if(skipReview&&name==='_Phan_loai_can_kiem_tra')continue;await snapshot(entry,prefix+name+'/',out,depth+1,stopped,skipReview);}else if(/\.(xml|zip)$/i.test(name))out.push({name:prefix+name,file:()=>entry.getFile()});}
@@ -64,5 +65,5 @@
   return rows;
  }
  function pdfValid(bytes){return bytes.length>=20&&new TextDecoder().decode(bytes.slice(0,5))==='%PDF-'&&new TextDecoder().decode(bytes.slice(-2048)).includes('%%EOF');}
- return {limits,safe,key,decode,parse,hash,snapshot,collect,profilesFrom,assignments,folder,filename,child,write,index,conflicts,pdfValid};
+ return {limits,safe,key,decode,parse,hash,sourcesFromFiles,snapshot,collect,profilesFrom,assignments,folder,filename,child,write,index,conflicts,pdfValid};
 });

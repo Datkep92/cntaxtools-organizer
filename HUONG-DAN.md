@@ -15,3 +15,9 @@ Chọn **Dừng** để ngưng hoặc **Tải báo cáo CSV** để xem lại k�
 Mỗi MST chỉ hiển thị một hồ sơ, gom cả vai trò người bán/người mua và không tách theo tên đơn vị. Ngay dưới MST có số hóa đơn bán ra/mua vào (không đếm lặp XML cùng định danh) và thư mục chung. Ví dụ MST `001234567890` là người bán ở hóa đơn A, người mua ở hóa đơn B: cả hai vào `MST-001234567890`, lần lượt trong `Ban_ra/xml` và `Mua_vao/xml`. Nếu hai bên cùng thuộc một hồ sơ trong cùng hóa đơn, công cụ yêu cầu kiểm tra thay vì tự chọn chiều.
 
 Chỉ tự đề xuất hồ sơ mới nếu MST có cả XML bán ra và XML mua vào trong nguồn. MST chỉ xuất hiện một chiều (nhà cung cấp/khách hàng) không tự được đề xuất. Hồ sơ MST đã có trong kho vẫn được giữ để nhập bổ sung một chiều. Không dùng một XML có hai bên cùng MST để chứng minh đủ hai chiều.
+
+## Chọn Downloads hoặc thư mục bị trình duyệt hạn chế
+
+- Với **nguồn**: bấm **Chọn thư mục chỉ đọc**, chọn Downloads và xác nhận cho trình duyệt đọc các tệp. XML/ZIP trong thư mục con được lấy; các tệp khác được bỏ qua. Nếu trình duyệt vẫn không cho chọn thư mục, dùng **Nhập XML / ZIP** để chọn nhiều tệp.
+- Với **kho đích cần ghi**: website không thể tự bỏ hạn chế của trình duyệt. Tạo thư mục con, ví dụ `Downloads/KhoHoaDon`, rồi chọn thư mục này; hoặc chọn một kho khác bạn có quyền ghi.
+- Nếu đang mở trong trình duyệt nhúng mà không chọn/ghi được thư mục, mở địa chỉ web bằng Chrome/Edge trên máy tính. Hủy hộp chọn không xóa dữ liệu đã chọn trước đó. Cách chọn nguồn chỉ đọc không cấp quyền ghi; vẫn phải chọn kho đích riêng.
