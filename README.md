@@ -36,4 +36,4 @@ Mã được công khai để tham khảo; repository chưa cấp thêm giấy p
 
 **Quyền của trình duyệt:** Nếu Chrome/Edge chưa cho trang kết nối vào thiết bị, bấm **Kết nối lại** rồi chọn **Cho phép** khi trình duyệt hỏi. Sau khi đã lưu quyền, trang tự kết nối ở lần mở sau. Nếu đã chọn chặn, bật mạng cục bộ / loopback trong Cài đặt trang rồi thử lại. Đây là quyền của trình duyệt, không phải xác nhận từng lượt trong ứng dụng. Xem [tài liệu Chrome](https://developer.chrome.com/blog/local-network-access).
 
-Trang landing: [Phân loại XML/ZIP](https://datkep92.github.io/cntaxtools-landing/phan-loai-hoa-don/) · [Tải PDF gốc](https://datkep92.github.io/cntaxtools-landing/tai-pdf/). Hai đường dẫn không dùng trạng thái của nhau.
+Trang landing: [Phân loại XML/ZIP](https://datkep92.github.io/cntaxtools-landing/phan-loai-hoa-don/) · [Tải PDF gốc](https://datkep92.github.io/cntaxtools-landing/tai-hoa-don-goc/). Hai đường dẫn không dùng trạng thái của nhau.

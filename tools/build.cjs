@@ -10,10 +10,19 @@ fs.mkdirSync(out,{recursive:true});
 html=html.replace(/\r\n/g,'\n');
 const sums=[];
 for(const mode of ['sort','pdf']){
+ let template=html;
+ if(mode==='pdf'){
+  template=fs.readFileSync(path.join(dir,'pdf-page.html'),'utf8');
+  for(const [slot,file] of [['STYLE','style.css'],['CORE','core.js'],['BRIDGE','bridge.js'],['APP','pdf-app.js']]){
+   let content=fs.readFileSync(path.join(dir,file),'utf8');if(slot==='STYLE')content+='\n'+fs.readFileSync(path.join(dir,'pdf-style.css'),'utf8');
+   template=template.replace('/*'+slot+'*/',()=>content.replace(/<\/script/gi,'<\\/script'));
+  }
+  template=template.replace(/\r\n/g,'\n');
+ }
  const title=mode==='pdf'?'Tải PDF hóa đơn gốc':'Phân loại hóa đơn XML / ZIP';
  const description=mode==='pdf'?'Chọn XML, chọn nơi lưu và tải ngay. Không cần phân loại hoặc chọn hồ sơ MST.':'Sắp xếp XML/ZIP theo MST mua vào, bán ra. Giữ nguyên tệp nguồn.';
  const offline=mode==='pdf'?'CNTaxTools-TaiPDF.html':'CNTaxTools-PhanLoai.html';
- let page=html.replaceAll('/*MODE*/',mode).replaceAll('/*TITLE*/',title).replaceAll('/*DESCRIPTION*/',description).replaceAll('/*OFFLINE*/',offline);
+ let page=template.replaceAll('/*MODE*/',mode).replaceAll('/*TITLE*/',title).replaceAll('/*DESCRIPTION*/',description).replaceAll('/*OFFLINE*/',offline);
  const web=page.replaceAll('/*SORT_URL*/',mode==='pdf'?'../':'./').replaceAll('/*PDF_URL*/',mode==='pdf'?'./':'tai-pdf/');
  const directory=mode==='pdf'?path.join(out,'tai-pdf'):out;fs.mkdirSync(directory,{recursive:true});fs.writeFileSync(path.join(directory,'index.html'),web);
  page=page.replaceAll('/*SORT_URL*/','CNTaxTools-PhanLoai.html').replaceAll('/*PDF_URL*/','CNTaxTools-TaiPDF.html');

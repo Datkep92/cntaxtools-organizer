@@ -12,7 +12,7 @@ Mở bằng Chrome/Edge trên máy tính. Trang PDF tự kiểm tra bộ tải t
 
 ## Tải PDF gốc riêng
 
-1. Mở trực tiếp [Tải PDF gốc](https://datkep92.github.io/cntaxtools-landing/tai-pdf/). Không cần mở trang phân loại.
+1. Mở trực tiếp [Tải PDF gốc](https://datkep92.github.io/cntaxtools-landing/tai-hoa-don-goc/). Không cần mở trang phân loại.
 2. Chọn thư mục XML hoặc **Nhập nhiều XML**; chọn thư mục để lưu PDF.
 3. Bấm **Tải PDF gốc** để chạy ngay cho toàn bộ XML hợp lệ. Không chọn MST, không phân loại và không sao chép XML.
 4. PDF lưu trực tiếp vào thư mục PDF đã chọn. Không sao chép/phân loại lại XML. PDF hợp lệ đã có được bỏ qua.
