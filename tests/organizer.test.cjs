@@ -2,12 +2,12 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const C=require('../src/core');
 const root=path.resolve(__dirname,'..');
-test('web and offline HTML are identical, self-contained and only permit local bridge network access',()=>{
+test('web and offline HTML have independent routes and are self-contained and only permit local bridge network access',()=>{
  const web=fs.readFileSync(path.join(root,'dist/index.html'),'utf8'),offline=fs.readFileSync(path.join(root,'dist/CNTaxTools-PhanLoai.html'),'utf8');
- assert.equal(web,offline);assert.ok(web.includes("connect-src http://127.0.0.1:*"));assert.ok(web.includes("frame-src blob:"));assert.ok(web.includes('JSZip'));assert.ok(web.includes('OrganizerApp'));
+ assert.equal(web.replace('href="./"','href="CNTaxTools-PhanLoai.html"').replace('href="tai-pdf/"','href="CNTaxTools-TaiPDF.html"'),offline);const pdf=fs.readFileSync(path.join(root,'dist/tai-pdf/index.html'),'utf8');assert.ok(pdf.includes('data-tool="pdf"'));assert.ok(pdf.includes('href="../"'));assert.ok(pdf.includes('href="./"'));assert.ok(pdf.includes('Tải PDF hóa đơn gốc'));assert.ok(!pdf.includes('/*MODE*/'));assert.ok(web.includes("connect-src http://127.0.0.1:*"));assert.ok(web.includes("frame-src blob:"));assert.ok(web.includes('JSZip'));assert.ok(web.includes('OrganizerApp'));
  assert.doesNotMatch(web,/<script[^>]+src\s*=/i);assert.doesNotMatch(web,/\/\*(?:STYLE|ZIP|CORE|BRIDGE|APP)\*\//);
  assert.ok(web.includes('1.8.3'));assert.ok(web.includes('chưa có cầu nối'));assert.ok(web.includes('id="confirm-dialog"'));assert.ok(web.includes('id="tab-pdf"'));assert.ok(!web.includes('kho CNTaxTools'));
- const sum=require('node:crypto').createHash('sha256').update(web).digest('hex');assert.ok(fs.readFileSync(path.join(root,'dist/SHA256SUMS.txt'),'utf8').startsWith(sum));
+ const sum=require('node:crypto').createHash('sha256').update(offline).digest('hex');assert.ok(fs.readFileSync(path.join(root,'dist/SHA256SUMS.txt'),'utf8').startsWith(sum));
 });
 test('invoice key normalizes invoice number, preserves leading tax ID zeros',()=>{
  assert.equal(C.key({seller:'001234567890',model:'1',series:'C26TAA',number:'00042'}),'001234567890|1|C26TAA|42');

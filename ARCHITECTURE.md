@@ -2,7 +2,7 @@
 
 - `src/core.js`: XML/ZIP, định danh, băm nội dung, chống trùng/xung đột, ghi tệp và đọc lại xác minh.
 - `src/bridge.js`: kiểm cổng, popup/MessageChannel, xác minh nonce/cửa sổ/origin, request và heartbeat sau ghép nối.
-- `src/app.js`: hai workspace độc lập; tự đọc nguồn sau chọn đích; MST hai chiều mặc định, MST một chiều tùy chọn; xác nhận trước ghi; sắp xếp/tải PDF, tiến trình/lỗi/báo cáo, xem trước.
+- `src/app.js`: hai điểm vào độc lập, khởi tạo sort/pdf theo body data-tool; tự đọc nguồn sau chọn đích; MST hai chiều mặc định, MST một chiều tùy chọn; xác nhận trước ghi; sắp xếp hoặc tải PDF riêng, tiến trình/lỗi/báo cáo, xem trước.
 - `src/page.html`, `src/style.css`: giao diện tiếng Việt, tên gọi chung, bố cục thích ứng.
 - `tools/build.cjs`: cùng nguồn cho web và HTML ngoại tuyến, nhúng JSZip/CSS/JS. Không tải CDN.
 
@@ -17,3 +17,5 @@ Khi người dùng xác nhận tải, cửa sổ relay giữ mã phiên riêng c
 Kiểm công khai gồm unit/build và Chrome với tệp/thư mục sandbox, bộ tải/PDF mẫu, đường lỗi thiếu mã, kết nối chậm, chống trùng/xung đột, hủy xác nhận, PDF riêng/xem trước và màn hình rộng/hẹp. Kiểm bridge native bổ sung chạy trong dự án ứng dụng. Không coi các kiểm fixture là chứng minh mọi cổng nhà cung cấp hoặc EXE đã phát hành hoạt động.
 
 Đối với HTTPS, kiểm quyền granular `loopback-network` an toàn trước khi dò: granted thì tự kết nối, prompt/denied thì giải thích và chờ thao tác người dùng. Không truy vấn permission tên cũ có thể lỗi trên Chrome cũ. Fetch khai báo `targetAddressSpace: loopback`; không tắt kiểm bảo mật mạng trong trình duyệt. Browser test HTTPS mô phỏng người dùng cấp quyền bằng CDP trong profile tạm, không sửa quyền trình duyệt người dùng.
+
+Trang PDF khởi tạo trực tiếp, không dùng danh sách MST đã chọn ở trang phân loại. Mỗi hóa đơn tự dùng một bên MST trong chính XML làm chủ thể manifest, ưu tiên bên xuất hiện chung nhiều hơn để không biến từng nhà cung cấp thành một hồ sơ riêng; mỗi hóa đơn chỉ lấy một lần. Không tạo hồ sơ hay phân loại thư mục mua/bán. Chống trùng theo key/hash; cùng key khác hash tách lỗi, không tải. Không nới origin, manifest/hash, quyền bridge hoặc cookie.

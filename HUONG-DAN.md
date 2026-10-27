@@ -1,20 +1,20 @@
 # Sắp xếp & tải hóa đơn
 
-Mở bằng Chrome/Edge trên máy tính. Trang tự kiểm tra bộ tải trên máy; không kết nối được thì có thể nhập lại cổng hoặc bấm **Bỏ qua**. Chỉ sắp xếp XML/ZIP thì không cần bộ tải. Cổng thành công được nhớ cho lần sau, không quét các cổng khác.
+Mở bằng Chrome/Edge trên máy tính. Trang PDF tự kiểm tra bộ tải trên máy; không kết nối được thì có thể nhập lại cổng hoặc bấm **Bỏ qua**. Chỉ sắp xếp XML/ZIP thì không cần bộ tải. Cổng thành công được nhớ cho lần sau, không quét các cổng khác.
 
 ## Sắp xếp XML / ZIP
 
 1. **Thư mục cần sắp xếp → Chọn thư mục.** Gồm XML và ZIP trong các thư mục con.
 2. **Thư mục lưu dữ liệu → Chọn thư mục.** Công cụ tự đọc dữ liệu khi đã có đủ nguồn và nơi lưu.
 3. MST có cả mua vào và bán ra được chọn sẵn. Mở danh sách MST một chiều để chọn thêm nếu nguồn còn thiếu dữ liệu. Không chọn tất cả nhà cung cấp/khách hàng nếu bạn không quản lý các MST đó.
-4. Bấm **Phân loại**. Kiểm tra nguồn, nơi lưu và số MST. Chọn **Tải luôn hóa đơn PDF gốc** nếu cần; bấm **Đồng ý, sắp xếp** để bắt đầu. Bấm **Để sau** chưa ghi tệp nào.
-5. Theo dõi danh sách. Tệp nguồn giữ nguyên, XML trùng được bỏ qua, bản khác nội dung được tách để kiểm tra. XML nằm ở `MST-…/Mua_vao/xml` hoặc `MST-…/Ban_ra/xml`; PDF tải kèm nằm ở `pdf-goc` trong nhánh tương ứng.
+4. Bấm **Phân loại**. Kiểm tra nguồn, nơi lưu và số MST. Bấm **Đồng ý, sắp xếp** để bắt đầu. Bấm **Để sau** chưa ghi tệp nào.
+5. Theo dõi danh sách. Tệp nguồn giữ nguyên, XML trùng được bỏ qua, bản khác nội dung được tách để kiểm tra. XML nằm ở `MST-…/Mua_vao/xml` hoặc `MST-…/Ban_ra/xml`. PDF dùng trang riêng.
 
 ## Tải PDF gốc riêng
 
-1. Chuyển sang **Tải PDF gốc**.
+1. Mở trực tiếp [Tải PDF gốc](https://datkep92.github.io/cntaxtools-landing/tai-pdf/). Không cần mở trang phân loại.
 2. Chọn thư mục XML hoặc **Nhập nhiều XML**; chọn thư mục để lưu PDF.
-3. Kiểm tra MST đã chọn (MST một chiều có thể chọn thêm). Bấm **Tải PDF gốc**, xác nhận để chạy.
+3. Bấm **Tải PDF gốc** để chạy ngay cho toàn bộ XML hợp lệ. Không chọn MST, không phân loại và không sao chép XML.
 4. PDF lưu trực tiếp vào thư mục PDF đã chọn. Không sao chép/phân loại lại XML. PDF hợp lệ đã có được bỏ qua.
 5. Bấm **Xem PDF** trên dòng đã lưu để mở bản gốc, hoặc tải riêng tệp đó. Các dòng thiếu mã/cần xác minh có nút bổ sung hoặc mở cổng nhà cung cấp. Có thể lọc **Cần kiểm tra**, tải báo cáo và thử lại.
 
