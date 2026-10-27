@@ -7,6 +7,7 @@ for(const [slot,file] of [['STYLE',path.join(dir,'style.css')],['ZIP',require.re
  html=html.replace('/*'+slot+'*/',()=>text);
 }
 fs.mkdirSync(out,{recursive:true});
+html=html.replace(/\r\n/g,'\n');
 const sums=[];
 for(const mode of ['sort','pdf']){
  const title=mode==='pdf'?'Tải PDF hóa đơn gốc':'Phân loại hóa đơn XML / ZIP';
